@@ -1,6 +1,6 @@
 # a2-starter
 
-
+### Running the app
 Run the main Flask module by running `python3 PizzaParlour.py`
 
 Then open `http://127.0.0.1:5000/pizza` to see the welcome screen
