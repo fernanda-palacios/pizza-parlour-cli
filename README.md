@@ -1,5 +1,8 @@
 # a2-starter
 
+### Setup the environment
+`pip3 install flask pytest`
+
 ### Running the app
 Run the main Flask module by running `python3 PizzaParlour.py`
 
