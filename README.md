@@ -1,5 +1,8 @@
 # a2-starter
 
+### CLI commands
+`flask hello`  - input name and return greetings.
+
 ### Running the app
 Run the main Flask module by running `python3 PizzaParlour.py`
 
