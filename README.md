@@ -3,6 +3,9 @@
 ### CLI commands
 `flask hello`  - input name and return greetings.
 
+### Setup the environment
+`pip3 install flask pytest`
+
 ### Running the app
 Run the main Flask module by running `python3 PizzaParlour.py`
 
