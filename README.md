@@ -7,6 +7,8 @@
 ### CLI commands without flask
 `python3 cli.py --count=3`  - input name and return hello count times.
 
+`python3 cli.py --help` see documentation for cli (available commands and arguments)
+
 
 ### Setup the environment
 `pip3 install flask pytest`
