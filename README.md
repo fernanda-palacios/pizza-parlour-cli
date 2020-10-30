@@ -1,7 +1,12 @@
 # a2-starter
 
-### CLI commands
+### CLI commands with flask
 `flask hello`  - input name and return greetings.
+
+
+### CLI commands without flask
+`python3 cli.py --count=3`  - input name and return hello count times.
+
 
 ### Setup the environment
 `pip3 install flask pytest`
