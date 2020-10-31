@@ -1,6 +1,6 @@
 import click
 import requests
-from cloudflare import cloudflare
+from cli_commands.cloudflare import cloudflare
 
 
 @click.group()
