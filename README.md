@@ -4,16 +4,17 @@
 `flask hello`  - input name and return greetings.
 
 
-### CLI commands without flask
-`python3 cli.py --count=3`  - input name and return hello count times.
+### CLI command app
+`python3 cli.py` or `cli {command}` 
 
-`python3 cli.py --help` see documentation for cli (available commands and arguments)
+`cli --help` see documentation for cli (available commands and arguments)
 
 
 ### Setup the environment
 `pip3 install flask pytest`
+`python3 -m pip install --editable .` for cli app to work with the entry point of 'cli'
 
-### Running the app
+### Running the server
 Run the main Flask module by running `python3 PizzaParlour.py`
 
 Then open `http://127.0.0.1:5000/pizza` to see the welcome screen
