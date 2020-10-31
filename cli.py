@@ -7,14 +7,26 @@ def cli():
     pass
 
 @cli.command()
-def create():
-    click.echo('create called')
-    # os.system('curl http://127.0.0.1:5000/create')
+def menu():
+    click.echo('menu called')
 
 @cli.command()
-def conn():
-    click.echo('conn called')
-    # os.system('curl http://127.0.0.1:5000/')
+def create_order():
+    click.echo('create_order')
+
+@cli.command()
+def see_order():
+    click.echo('see_order')
+
+@cli.command()
+def update_order():
+    click.echo('update_order')
+
+@cli.command()
+def select_pickup_or_delivery_method():
+    click.echo('select_pickup_or_delivery_method')
+
+# additional more complex interaction examples
 
 @cli.command()
 @click.argument('arg')
