@@ -1,4 +1,6 @@
 import click
+import requests
+
 
 @click.group()
 def cli():
@@ -15,9 +17,14 @@ def conn():
     # os.system('curl http://127.0.0.1:5000/')
 
 @cli.command()
-def new():
-    click.echo('new called')
-    # os.system('curl http://127.0.0.1:5000/')
+@click.argument('arg')
+def with_api_request(arg):
+    click.echo('with_api_request')
+    click.echo(arg)
+    url_format = 'http://127.0.0.1:5000/pizza'
+    response = requests.get(url_format)
+    click.echo(response.text) 
+
 
 @cli.command()
 @click.option('--n', default=1, show_default=True)
