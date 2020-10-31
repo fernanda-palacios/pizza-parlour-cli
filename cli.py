@@ -1,5 +1,6 @@
 import click
 import requests
+from cloudflare import cloudflare
 
 
 @click.group()
@@ -55,10 +56,14 @@ def hello(count, name):
     for x in range(count):
         click.echo('Hello %s!' % name)
 
-
 def main():
     value = click.prompt('Select a command to run', type=click.Choice(list(cli.commands.keys())))
     cli.commands[value]()
+
+
+# invoke as cli cloudflare zone
+cli.add_command(cloudflare)
+
 
 if __name__ == "__main__":
     main()
