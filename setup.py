@@ -1,13 +1,13 @@
 from setuptools import setup
 setup(
-     name="hello",
+     name="cli",
      version='0.1',
-     py_modules=['hello'],
+     py_modules=['cli'],
      install_requires=[
                     'Click',
      ],
      entry_points='''
      [console_scripts]
-     hello=hello:cli
+     cli=cli:cli
 ''',
 )
