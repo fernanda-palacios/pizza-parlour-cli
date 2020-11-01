@@ -9,6 +9,13 @@
 
 `cli --help` see documentation for cli (available commands and arguments)
 
+`cli {command} --help` see documentation for that command (available subcommands and arguments)
+
+    - for commands nested inside groups, invoke them as  `cli {command} {subcommand}` eg `cli menu see-full-menu`
+
+
+Note: a cli method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscore) from the cli (it might be a click thing)
+
 
 ### Setup the environment
 `pip3 install flask pytest`

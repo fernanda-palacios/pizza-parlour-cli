@@ -1,34 +1,16 @@
 import click
 import requests
-from cli_commands.cloudflare import cloudflare
+from cli_commands.menu import menu
+from cli_commands.order import order
+from cli_commands.pickup_or_delivery import pickup_or_delivery
 
 
 @click.group()
 def cli():
     pass
 
-@cli.command()
-def menu():
-    click.echo('menu called')
 
-@cli.command()
-def create_order():
-    click.echo('create_order')
-
-@cli.command()
-def see_order():
-    click.echo('see_order')
-
-@cli.command()
-def update_order():
-    click.echo('update_order')
-
-@cli.command()
-def select_pickup_or_delivery_method():
-    click.echo('select_pickup_or_delivery_method')
-
-# additional more complex interaction examples
-
+# additional, dummy more complex interaction examples
 @cli.command()
 @click.argument('arg')
 def with_api_request(arg):
@@ -61,8 +43,9 @@ def main():
     cli.commands[value]()
 
 
-# invoke as cli cloudflare zone
-cli.add_command(cloudflare)
+cli.add_command(menu)
+cli.add_command(order)
+cli.add_command(pickup_or_delivery)
 
 
 if __name__ == "__main__":
