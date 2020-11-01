@@ -1,6 +1,7 @@
 import click
 import requests
 from cli_commands.menu import menu
+from cli_commands.order import order
 
 
 @click.group()
@@ -11,17 +12,17 @@ def cli():
 # def menu():
 #     click.echo('menu called')
 
-@cli.command()
-def create_order():
-    click.echo('create_order')
+# @cli.command()
+# def create_order():
+#     click.echo('create_order')
 
-@cli.command()
-def see_order():
-    click.echo('see_order')
+# @cli.command()
+# def see_order():
+#     click.echo('see_order')
 
-@cli.command()
-def update_order():
-    click.echo('update_order')
+# @cli.command()
+# def update_order():
+#     click.echo('update_order')
 
 @cli.command()
 def select_pickup_or_delivery_method():
@@ -62,6 +63,7 @@ def main():
 
 
 cli.add_command(menu)
+cli.add_command(order)
 
 
 if __name__ == "__main__":
