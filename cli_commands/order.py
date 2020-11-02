@@ -1,4 +1,5 @@
 import click
+import requests
 
 
 @click.group()
@@ -8,7 +9,11 @@ def order():
     
 @order.command()
 def create_order():
-    click.echo('create_order was called')
+    url_format = 'http://127.0.0.1:5000/order'
+    response = requests.post(url_format)
+    # TODO: parse json when echoing it
+    click.echo(response.text) 
+
 
 @order.command()
 def add_item_to_order():

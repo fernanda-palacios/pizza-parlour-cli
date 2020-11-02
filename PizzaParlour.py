@@ -21,19 +21,19 @@ def get_item_price():
     return "will send back price for item with id:" + item_id
 
 
-@app.route('/order')
+@app.route('/order', methods=['POST'])
 def create_order():
-    return 'Welcome to Pizza Planet!'
+    return 'create order response'
 
 
 @app.route('/addToOrder')
 def add_item_to_order():
-    return 'Welcome to Pizza Planet!'
+    return 'add_item_to_order response'
 
 
 @app.route('/removeFromOrder')
 def remove_item_from_order():
-    return 'Welcome to Pizza Planet!'
+    return 'remove item from order response'
     
 
 
