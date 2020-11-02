@@ -21,5 +21,21 @@ def get_item_price():
     return "will send back price for item with id:" + item_id
 
 
+@app.route('/order')
+def create_order():
+    return 'Welcome to Pizza Planet!'
+
+
+@app.route('/addToOrder')
+def add_item_to_order():
+    return 'Welcome to Pizza Planet!'
+
+
+@app.route('/removeFromOrder')
+def remove_item_from_order():
+    return 'Welcome to Pizza Planet!'
+    
+
+
 if __name__ == "__main__":
     app.run()
