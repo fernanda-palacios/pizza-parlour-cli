@@ -8,13 +8,28 @@ def menu():
 
 @menu.command()
 def see_full_menu():
-    click.echo('see full menu was called')
     url_format = 'http://127.0.0.1:5000/menu'
     response = requests.get(url_format)
+    # TODO: parse json when echoing it
     click.echo(response.text) 
 
 
 @menu.command()
-def item_price():
-    click.echo('item price was called')
+@click.option('--item_id', prompt='please enter the item id (from the menu)')
+def item_price(item_id):
+    url_format = 'http://127.0.0.1:5000/itemPrice'
+
+    query_params = {
+        'item_id': item_id
+    }
+
+    response = requests.get(url_format, params=query_params)
+    # TODO: parse json when echoing it?
+    click.echo(response.text) 
     
+
+
+# @menu.command()
+# @click.option('--item_id', prompt='Your item_id')
+# def item_price2(item_id):
+#     click.echo(item_id)
