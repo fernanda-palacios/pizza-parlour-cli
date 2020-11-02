@@ -21,5 +21,21 @@ def get_item_price():
     return "will send back price for item with id:" + item_id
 
 
+@app.route('/order', methods=['POST'])
+def create_order():
+    return 'create order response'
+
+
+@app.route('/addToOrder', methods=['POST'])
+def add_item_to_order():
+    return 'add_item_to_order response'
+
+
+@app.route('/removeFromOrder', methods=['POST'])
+def remove_item_from_order():
+    return 'remove item from order response'
+    
+
+
 if __name__ == "__main__":
     app.run()
