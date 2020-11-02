@@ -26,12 +26,12 @@ def create_order():
     return 'create order response'
 
 
-@app.route('/addToOrder')
+@app.route('/addToOrder', methods=['POST'])
 def add_item_to_order():
     return 'add_item_to_order response'
 
 
-@app.route('/removeFromOrder')
+@app.route('/removeFromOrder', methods=['POST'])
 def remove_item_from_order():
     return 'remove item from order response'
     
