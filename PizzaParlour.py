@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import jsonify
+from flask import request
 
 
 app = Flask("Assignment 2")
@@ -13,6 +14,12 @@ def welcome_pizza():
 def get_menu():
     return jsonify(coke=10,
                    water=20)
+
+@app.route('/itemPrice')
+def get_item_price():
+    item_id = request.args['item_id']    
+    return "will send back price for item with id:" + item_id
+
 
 if __name__ == "__main__":
     app.run()
