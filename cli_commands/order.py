@@ -55,3 +55,16 @@ def see_order(order_id):
 
     response = requests.get(url_format, params=query_params)
     click.echo(response.text) 
+
+
+@order.command()
+@click.option('--order_id')
+def cancel_order(order_id):
+    url_format = 'http://127.0.0.1:5000/order'
+    
+    query_params = {
+        'order_id': order_id
+    }
+
+    response = requests.delete(url_format, params=query_params)
+    click.echo(response.text) 
