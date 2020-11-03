@@ -44,6 +44,25 @@ def remove_item_from_order(order_id, item_id):
     click.echo(response.text) 
 
 
+
+@order.command()
+@click.option('--order_id')
+@click.option('--pizza_item_id')
+@click.option('--topping_item_id')
+def add_topping_to_pizza(order_id, pizza_item_id, topping_item_id):
+    url_format = 'http://127.0.0.1:5000/pizzaTopping'
+
+    query_params = {
+        'order_id': order_id,
+        'pizza_item_id': pizza_item_id,
+        'topping_item_id': topping_item_id
+    }
+
+    response = requests.post(url_format, params=query_params)
+    click.echo(response.text) 
+
+
+
 @order.command()
 @click.option('--order_id')
 def see_order(order_id):

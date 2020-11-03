@@ -50,5 +50,19 @@ def add_item_to_order():
         return 'remove item from order response DELETE' + order_id + ', ' + item_id
 
 
+
+@app.route('/pizzaTopping', methods=['POST'])
+def add_topping_to_pizza():
+    order_id = request.args['order_id']    
+    pizza_item_id = request.args['pizza_item_id'] 
+    topping_item_id = request.args['topping_item_id']    
+
+    return 'add_topping_to_pizza response POST ' + order_id + ', ' + pizza_item_id + ', ' + topping_item_id
+
+  
+
+
+
+
 if __name__ == "__main__":
     app.run()
