@@ -10,12 +10,11 @@ def menu():
 def see_full_menu():
     url_format = 'http://127.0.0.1:5000/menu'
     response = requests.get(url_format)
-    # TODO: parse json when echoing it
     click.echo(response.text) 
 
 
 @menu.command()
-@click.option('--item_id', prompt='please enter the item id (from the menu)')
+@click.option('--item_id')
 def item_price(item_id):
     url_format = 'http://127.0.0.1:5000/itemPrice'
 
@@ -24,7 +23,6 @@ def item_price(item_id):
     }
 
     response = requests.get(url_format, params=query_params)
-    # TODO: parse json when echoing it?
     click.echo(response.text) 
     
 

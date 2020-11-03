@@ -28,13 +28,20 @@ def create_order():
 
 @app.route('/addToOrder', methods=['POST'])
 def add_item_to_order():
-    return 'add_item_to_order response'
+    order_id = request.args['order_id']    
+    item_id = request.args['item_id']    
+
+    return 'add_item_to_order response ' + order_id + ', ' + item_id
 
 
 @app.route('/removeFromOrder', methods=['POST'])
 def remove_item_from_order():
-    return 'remove item from order response'
-    
+
+    order_id = request.args['order_id']    
+    item_id = request.args['item_id']    
+
+    return 'remove item from order response' + order_id + ', ' + item_id
+        
 
 
 if __name__ == "__main__":

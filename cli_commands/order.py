@@ -16,18 +16,34 @@ def create_order():
 
 
 @order.command()
-def add_item_to_order():
+@click.option('--order_id')
+@click.option('--item_id')
+def add_item_to_order(order_id, item_id):
     url_format = 'http://127.0.0.1:5000/addToOrder'
-    response = requests.post(url_format)
-    # TODO: parse json when echoing it
+
+    query_params = {
+        'order_id': order_id,
+        'item_id': item_id
+    }
+
+    response = requests.post(url_format, params=query_params)
     click.echo(response.text) 
 
 @order.command()
-def remove_item_from_order():
+@click.option('--order_id')
+@click.option('--item_id')
+def remove_item_from_order(order_id, item_id):
     url_format = 'http://127.0.0.1:5000/removeFromOrder'
     response = requests.post(url_format)
-    # TODO: parse json when echoing it
+    
+    query_params = {
+        'order_id': order_id,
+        'item_id': item_id
+    }
+
+    response = requests.post(url_format, params=query_params)
     click.echo(response.text) 
+
 
 @order.command()
 def see_order():
