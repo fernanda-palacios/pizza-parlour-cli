@@ -11,7 +11,6 @@ def order():
 def create_order():
     url_format = 'http://127.0.0.1:5000/order'
     response = requests.post(url_format)
-    # TODO: parse json when echoing it
     click.echo(response.text) 
 
 
@@ -46,5 +45,13 @@ def remove_item_from_order(order_id, item_id):
 
 
 @order.command()
-def see_order():
-    click.echo('see_order was called')
+@click.option('--order_id')
+def see_order(order_id):
+    url_format = 'http://127.0.0.1:5000/order'
+    
+    query_params = {
+        'order_id': order_id
+    }
+
+    response = requests.get(url_format, params=query_params)
+    click.echo(response.text) 

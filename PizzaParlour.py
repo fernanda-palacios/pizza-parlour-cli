@@ -21,9 +21,14 @@ def get_item_price():
     return "will send back price for item with id:" + item_id
 
 
-@app.route('/order', methods=['POST'])
+@app.route('/order', methods=['POST', 'GET'])
 def create_order():
-    return 'create order response'
+    if request.method == 'POST':
+        return 'create order response POST'
+    else: 
+        order_id = request.args['order_id']    
+
+        return 'create order response GET, id: ' + order_id
 
 
 @app.route('/addToOrder', methods=['POST'])
