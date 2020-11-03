@@ -62,7 +62,6 @@ def add_topping_to_pizza(order_id, pizza_item_id, topping_item_id):
     click.echo(response.text) 
 
 
-
 @order.command()
 @click.option('--order_id')
 def see_order(order_id):
@@ -87,3 +86,4 @@ def cancel_order(order_id):
 
     response = requests.delete(url_format, params=query_params)
     click.echo(response.text) 
+    
