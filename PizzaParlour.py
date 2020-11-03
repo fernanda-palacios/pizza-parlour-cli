@@ -35,22 +35,19 @@ def create_order():
         
 
 
-@app.route('/addToOrder', methods=['POST'])
+@app.route('/orderItems', methods=['POST', 'DELETE'])
 def add_item_to_order():
-    order_id = request.args['order_id']    
-    item_id = request.args['item_id']    
+    if request.method == 'POST':
+        order_id = request.args['order_id']    
+        item_id = request.args['item_id']    
 
-    return 'add_item_to_order response ' + order_id + ', ' + item_id
+        return 'add_item_to_order response POST ' + order_id + ', ' + item_id
 
+    else:
+        order_id = request.args['order_id']    
+        item_id = request.args['item_id']    
 
-@app.route('/removeFromOrder', methods=['POST'])
-def remove_item_from_order():
-
-    order_id = request.args['order_id']    
-    item_id = request.args['item_id']    
-
-    return 'remove item from order response' + order_id + ', ' + item_id
-        
+        return 'remove item from order response DELETE' + order_id + ', ' + item_id
 
 
 if __name__ == "__main__":
