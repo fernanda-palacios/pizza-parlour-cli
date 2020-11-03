@@ -35,7 +35,7 @@ def create_order():
         
 
 
-@app.route('/orderItems', methods=['POST', 'DELETE'])
+@app.route('/orderItem', methods=['POST', 'DELETE'])
 def add_item_to_order():
     if request.method == 'POST':
         order_id = request.args['order_id']    
