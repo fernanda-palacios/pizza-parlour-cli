@@ -10,6 +10,7 @@ def menu():
 def see_full_menu():
     url_format = 'http://127.0.0.1:5000/menu'
     response = requests.get(url_format)
+    click.echo('menu:')
     click.echo(response.text) 
 
 
