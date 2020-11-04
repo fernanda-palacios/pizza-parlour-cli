@@ -21,6 +21,18 @@ def select_pickup(order_id):
 
 
     
-# @pickup_or_delivery.command()
-# def select_pickup_or_delivery_method():
-#     click.echo('select_pickup_or_delivery_method was called')
+@pickup_or_delivery.command()
+@click.option('--order_id')
+@click.option('--method')
+@click.option('--address')
+def select_delivery_method(order_id, method, address):
+    url_format = 'http://127.0.0.1:5000/delivery'
+
+    query_params = {
+        'order_id': order_id,
+        'method': method,
+        'address': address
+    }
+
+    response = requests.post(url_format, params=query_params)
+    click.echo(response.text) 
