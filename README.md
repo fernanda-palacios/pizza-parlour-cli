@@ -30,6 +30,8 @@ Then open `http://127.0.0.1:5000/pizza` to see the welcome screen
 
 - Run CLI (poc) unit tests with coverage by running `pytest --cov-report term --cov=. tests/test_sync.py  `
 
+ - Run our CLI (poc) unit tests with coverage by running ` pytest --cov-report term --cov=. tests/cli_tests.py`
+
 
 ### Installing dependencies 
 - `pip install flask`
