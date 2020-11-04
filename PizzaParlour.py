@@ -82,9 +82,9 @@ def select_delivery():
     order_id = request.args['order_id']    
     method = request.args['method']    
     address = request.args['address']    
-    # order_details_format  = request.args['order_details_format']    
+    order_details_format  = request.args['order_details_format']    
 
-    return 'select delivery for order '  + order_id + method + address
+    return 'select delivery for order '  + order_id + method + address + order_details_format
 
 
 

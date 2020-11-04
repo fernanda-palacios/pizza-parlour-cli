@@ -28,10 +28,19 @@ def select_pickup(order_id):
 def select_delivery_method(order_id, method, address):
     url_format = 'http://127.0.0.1:5000/delivery'
 
+    if method == 'in-house' or method == 'ubereats':
+        order_details_format = 'json'
+    elif method == 'foodora': 
+        order_details_format = 'csv'
+    else:
+        # default 
+        order_details_format = 'json'
+  
     query_params = {
         'order_id': order_id,
         'method': method,
-        'address': address
+        'address': address,
+        'order_details_format': order_details_format
     }
 
     response = requests.post(url_format, params=query_params)
