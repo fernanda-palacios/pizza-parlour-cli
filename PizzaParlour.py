@@ -36,28 +36,35 @@ def create_order():
 
 
 @app.route('/orderItem', methods=['POST', 'DELETE'])
-def add_item_to_order():
+def handle_order_item():
     if request.method == 'POST':
         order_id = request.args['order_id']    
         item_id = request.args['item_id']    
 
-        return 'add_item_to_order response POST ' + order_id + ', ' + item_id
+        return 'handle_order_item response POST ' + order_id + ', ' + item_id
 
     else:
         order_id = request.args['order_id']    
         item_id = request.args['item_id']    
 
-        return 'remove item from order response DELETE' + order_id + ', ' + item_id
+        return 'handle_order_item response DELETE' + order_id + ', ' + item_id
 
 
 
-@app.route('/pizzaTopping', methods=['POST'])
-def add_topping_to_pizza():
-    order_id = request.args['order_id']    
-    pizza_item_id = request.args['pizza_item_id'] 
-    topping_item_id = request.args['topping_item_id']    
+@app.route('/pizzaTopping', methods=['POST', 'DELETE'])
+def handle_pizza_topping():
+    if request.method == 'POST':
+        order_id = request.args['order_id']    
+        pizza_item_id = request.args['pizza_item_id'] 
+        topping_item_id = request.args['topping_item_id']    
 
-    return 'add_topping_to_pizza response POST ' + order_id + ', ' + pizza_item_id + ', ' + topping_item_id
+        return 'handle_pizza_toppinging_to_pizza response POST ' + order_id + ', ' + pizza_item_id + ', ' + topping_item_id
+    else:
+        order_id = request.args['order_id']    
+        pizza_item_id = request.args['pizza_item_id'] 
+        topping_item_id = request.args['topping_item_id']    
+
+        return 'handle_pizza_toppingg response DELETE' + order_id + ', ' + pizza_item_id + ', ' + topping_item_id
 
   
 
