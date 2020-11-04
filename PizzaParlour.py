@@ -70,6 +70,13 @@ def handle_pizza_topping():
 
 
 
+@app.route('/pickup', methods=['POST'])
+def select_pickup():
+    order_id = request.args['order_id']    
+    return 'select pickup for order '  + order_id
+
+
+
 
 if __name__ == "__main__":
     app.run()
