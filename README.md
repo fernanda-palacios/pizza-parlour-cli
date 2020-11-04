@@ -1,8 +1,5 @@
 # a2-starter
 
-### CLI commands with flask
-`flask hello`  - input name and return greetings.
-
 
 ### CLI command app
 `python3 cli.py` or `cli {command}` 
@@ -36,3 +33,4 @@ Then open `http://127.0.0.1:5000/pizza` to see the welcome screen
 - `pip install flask`
 - `pip install pytest`
 - `pip install pytest-cov`
+- `pip install flask_restful`
