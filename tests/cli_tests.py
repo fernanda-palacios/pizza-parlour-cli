@@ -16,8 +16,6 @@ def test_see_full_menu():
 
 def test_item_price():
   runner = CliRunner()
-#   result = runner.invoke(cli, ['menu', 'item-price', '--item_id', '1'])
-  result = runner.invoke(cli, ['menu', 'item-price'])
-
+  result = runner.invoke(cli, ['menu', 'item-price', '--item_id', '1'])
   assert result.exit_code == 0
   assert 'price:' in result.output
