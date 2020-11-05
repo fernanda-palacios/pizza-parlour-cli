@@ -1,7 +1,7 @@
 # A2
 
 
-## Instructions for using app
+## 1. Instructions for using app
 
 ### Setup
 - `pip install -r requirements.txt` install dependencies
@@ -30,10 +30,10 @@ Run the main Flask module by running `python3 PizzaParlour.py`
 - Run our CLI tests with coverage by running `pytest --cov-report term --cov=. tests/cli_tests.py`
 
 
-## Pair Programming
+## 2. Pair Programming
 
-## Program Design
+## 3. Program Design
 
-## Tools Used (code craftmanship)
+## 4. Tools Used (code craftsmanship)
 
 
