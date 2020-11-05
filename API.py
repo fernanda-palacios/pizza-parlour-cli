@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Api, Resource
 
+
 import csv, json
 
 app = Flask(__name__)
@@ -18,6 +19,7 @@ class ItemPrice(Resource):
             return {'message': 'item_id does not exist'}
 
         return contents[item_id][price_index]
+
 
 
 class Menu(Resource):
@@ -58,6 +60,7 @@ class Order(Resource):
 api.add_resource(Order, '/order')
 api.add_resource(Menu, '/menu')
 api.add_resource(ItemPrice, '/itemPrice/<int:item_id>')
+
 
 if __name__ == "__main__":
     app.run()
