@@ -1,7 +1,7 @@
-# a2-starter
+# A2
 
 
-### CLI command app
+## Instructions for using app
 `python3 cli.py` or `cli {command}` 
 
 `cli --help` see documentation for cli (available commands and arguments)
@@ -38,3 +38,12 @@ Then open `http://127.0.0.1:5000/pizza` to see the welcome screen
 - `pip install pytest`
 - `pip install pytest-cov`
 - `pip install flask_restful`
+
+
+## Pair Programming
+
+## Program Design
+
+## Tools Used (code craftmanship)
+
+
