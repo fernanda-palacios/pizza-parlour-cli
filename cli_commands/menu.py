@@ -10,7 +10,7 @@ def menu():
 def see_full_menu():
     url_format = 'http://127.0.0.1:5000/menu'
     response = requests.get(url_format)
-    click.echo('menu:')
+    click.echo('Menu:')
     click.echo(response.text) 
 
 
@@ -24,6 +24,6 @@ def item_price(item_id):
     }
 
     response = requests.get(url_format, params=query_params)
-    click.echo('price:')
+    click.echo('Price:')
     click.echo(response.text) 
     
