@@ -1,0 +1,7 @@
+flask
+pytest
+pytest-cov
+flask_restful
+click
+requests
+setuptools
