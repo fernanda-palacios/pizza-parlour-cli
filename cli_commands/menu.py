@@ -24,11 +24,6 @@ def item_price(item_id):
     }
 
     response = requests.get(url_format, params=query_params)
+    click.echo('price:')
     click.echo(response.text) 
     
-
-
-# @menu.command()
-# @click.option('--item_id', prompt='Your item_id')
-# def item_price2(item_id):
-#     click.echo(item_id)
