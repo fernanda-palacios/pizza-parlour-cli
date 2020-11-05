@@ -11,6 +11,7 @@ def order():
 def create_order():
     url_format = 'http://127.0.0.1:5000/order'
     response = requests.post(url_format)
+    click.echo('Order has been created. Order Id:')
     click.echo(response.text) 
 
 
