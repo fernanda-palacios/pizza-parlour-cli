@@ -9,13 +9,21 @@
 
 
 ### Running the cli app
-`python3 cli.py` or `cli {command}` 
+`python3 cli.py` or `cli {group} {command}` 
 
-`cli --help` see documentation for cli (available commands and arguments)
+The commands are divided by the following groups: menu, order, pickup-or-delivery
 
-`cli {command} --help` see documentation for that command (available subcommands and arguments)
+![alt text](cli_instructions_pictures/groups.png)
 
-    - for commands nested inside groups, invoke them as  `cli {command} {subcommand}` eg `cli menu see-full-menu`
+
+Each group is has its own commands:
+
+![alt text](cli_instructions_pictures/menu_commands.png)
+
+![alt text](cli_instructions_pictures/order_commands.png)
+
+![alt text](cli_instructions_pictures/pickup-or-delivery_commands.png)
+
 
 
 Note: a cli method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscore) from the cli (it might be a click thing)
