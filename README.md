@@ -9,15 +9,17 @@
 
 
 ### Running the cli app
-`python3 cli.py` or `cli {group} {command}` 
+`python3 cli.py`
 
-The commands are divided by the following groups: menu, order, pickup-or-delivery
+The commands are divided by groups (categories) and each group has its own available comands
+Any command can be invoked as `cli {group} {command}` (examples section below)
+
+**Groups:**
 
 ![alt text](cli_instructions_pictures/groups.png)
 
 
-Each group is has its own commands:
-
+**Comands for each group**
 ![alt text](cli_instructions_pictures/menu_commands.png)
 
 ![alt text](cli_instructions_pictures/order_commands.png)
@@ -26,7 +28,7 @@ Each group is has its own commands:
 
 
 
-Note: a cli method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscore) from the cli (it might be a click thing)
+Note: a cli method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscores) 
 
 
 ### Running the server
