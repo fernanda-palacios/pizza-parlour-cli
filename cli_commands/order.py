@@ -28,6 +28,7 @@ def add_item_to_order(order_id, item_id):
 
     response = requests.post(url_format, params=query_params)
     click.echo(response.text) 
+    click.echo('Added item to order')
 
 @order.command()
 @click.option('--order_id')
