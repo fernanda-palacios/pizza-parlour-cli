@@ -27,3 +27,36 @@ def test_add_item_to_order():
   assert result.exit_code == 0
   assert 'Added item to order' in result.output
 
+
+def test_remove_item_from_order():
+  runner = CliRunner()
+  result = runner.invoke(cli, ['order', 'remove-item-from-order', '--order_id', '1', '--item_id', '2'])
+  assert result.exit_code == 0
+  assert 'Removed item from order' in result.output
+
+def test_add_topping_to_pizza():
+  runner = CliRunner()
+  result = runner.invoke(cli, ['order', 'add-topping-to-pizza', '--order_id', '1', '--pizza_item_id', '2', '--topping_item_id', '3'])
+  assert result.exit_code == 0
+  assert 'Added topping to pizza' in result.output
+
+
+def test_remove_topping_from_pizza():
+  runner = CliRunner()
+  result = runner.invoke(cli, ['order', 'remove-topping-from-pizza', '--order_id', '1', '--pizza_item_id', '2', '--topping_item_id', '3'])
+  assert result.exit_code == 0
+  assert 'Removed topping from pizza' in result.output
+
+
+def test_see_order():
+  runner = CliRunner()
+  result = runner.invoke(cli, ['order', 'see-order', '--order_id', '1'])
+  assert result.exit_code == 0
+  assert 'Order details:' in result.output
+
+
+def test_cancel_order():
+  runner = CliRunner()
+  result = runner.invoke(cli, ['order', 'cancel-order', '--order_id', '1'])
+  assert result.exit_code == 0
+  assert 'Order cancelled' in result.output

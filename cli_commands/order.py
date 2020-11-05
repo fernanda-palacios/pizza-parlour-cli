@@ -27,8 +27,8 @@ def add_item_to_order(order_id, item_id):
     }
 
     response = requests.post(url_format, params=query_params)
-    click.echo(response.text) 
     click.echo('Added item to order')
+    click.echo(response.text) 
 
 @order.command()
 @click.option('--order_id')
@@ -43,6 +43,7 @@ def remove_item_from_order(order_id, item_id):
     }
 
     response = requests.delete(url_format, params=query_params)
+    click.echo('Removed item from order')
     click.echo(response.text) 
 
 
@@ -61,6 +62,7 @@ def add_topping_to_pizza(order_id, pizza_item_id, topping_item_id):
     }
 
     response = requests.post(url_format, params=query_params)
+    click.echo('Added topping to pizza')
     click.echo(response.text) 
 
 
@@ -79,6 +81,7 @@ def remove_topping_from_pizza(order_id, pizza_item_id, topping_item_id):
     }
 
     response = requests.delete(url_format, params=query_params)
+    click.echo('Removed topping from pizza')
     click.echo(response.text) 
 
 
@@ -92,6 +95,7 @@ def see_order(order_id):
     }
 
     response = requests.get(url_format, params=query_params)
+    click.echo('Order details:')
     click.echo(response.text) 
 
 
@@ -103,6 +107,8 @@ def cancel_order(order_id):
     query_params = {
         'order_id': order_id
     }
+
+    click.echo('Order cancelled')
 
     response = requests.delete(url_format, params=query_params)
     click.echo(response.text) 
