@@ -4,16 +4,7 @@
 ## Instructions for using app
 
 ### Setup
-
-1. Installing dependencies 
-`pip install -r requirements.txt`
-<!-- - `pip install flask`
-- `pip install pytest`
-- `pip install pytest-cov`
-- `pip install flask_restful`
-- `pip install click`
-- `pip install requests`
-- `pip install setuptools` -->
+- `pip install -r requirements.txt` install dependencies
 - `python3 -m pip install --editable .` for cli app to work with the entry point of 'cli'
 
 
