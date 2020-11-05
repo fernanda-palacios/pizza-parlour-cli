@@ -24,6 +24,7 @@ def item_price(item_id):
     }
 
     response = requests.get(url_format, params=query_params)
+    click.echo('price:')
     click.echo(response.text) 
     
 

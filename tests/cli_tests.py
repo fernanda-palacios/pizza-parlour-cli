@@ -7,8 +7,17 @@ def test_dots():
   assert result.exit_code == 0
   assert '...' in result.output
 
-def test_menu():
+def test_see_full_menu():
   runner = CliRunner()
   result = runner.invoke(cli, ['menu', 'see-full-menu'])
   assert result.exit_code == 0
   assert 'menu:' in result.output
+
+
+def test_item_price():
+  runner = CliRunner()
+#   result = runner.invoke(cli, ['menu', 'item-price', '--item_id', '1'])
+  result = runner.invoke(cli, ['menu', 'item-price'])
+
+  assert result.exit_code == 0
+  assert 'price:' in result.output
