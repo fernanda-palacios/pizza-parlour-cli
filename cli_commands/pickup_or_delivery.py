@@ -16,6 +16,7 @@ def select_pickup(order_id):
     }
 
     response = requests.post(url_format, params=query_params)
+    click.echo('Pickup has been selected')
     click.echo(response.text) 
 
 
@@ -32,9 +33,6 @@ def select_delivery_method(order_id, method, address):
         order_details_format = 'json'
     elif method == 'foodora': 
         order_details_format = 'csv'
-    else:
-        # default 
-        order_details_format = 'json'
   
     query_params = {
         'order_id': order_id,
@@ -44,4 +42,5 @@ def select_delivery_method(order_id, method, address):
     }
 
     response = requests.post(url_format, params=query_params)
+    click.echo('Delivery has been selected')
     click.echo(response.text) 
