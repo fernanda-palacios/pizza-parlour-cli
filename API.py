@@ -57,10 +57,36 @@ class Order(Resource):
         return new_order_id
 
 
+class OrderItem(Resource):
+    def post(self, order_id, item_id):
+        loaded_contents = json.load(open('orders.json', 'r'))
+
+        if order_id not in loaded_contents:
+            return {'error message': 'the order id does not exist'}
+
+        # added new item id as a key
+        loaded_contents[order_id][item_id] = {}
+        json.dump(loaded_contents, open('orders.json', 'w'))
+
+        return {"message": "updated order details"}
+
+    def delete(self, order_id, item_id):
+        loaded_contents = json.load(open('orders.json', 'r'))
+
+        if order_id not in loaded_contents:
+            return {'error message': 'the order id does not exist'}
+
+        # item is deleted from orders
+        loaded_contents[order_id].pop(item_id)
+        json.dump(loaded_contents, open('orders.json', 'w'))
+
+        return {"message": "updated order details"}
+
+
+api.add_resource(OrderItem, '/orderItem')
 api.add_resource(Order, '/order')
 api.add_resource(Menu, '/menu')
 api.add_resource(ItemPrice, '/itemPrice/<int:item_id>')
-
 
 if __name__ == "__main__":
     app.run()
