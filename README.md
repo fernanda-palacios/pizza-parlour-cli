@@ -24,6 +24,49 @@ Any command can be invoked as `cli {group} {command}` (examples section below)
 
 ![alt text](cli_instructions_pictures/pickup-or-delivery_commands.png)
 
+### Example usage of CLI/ documentation
+
+
+
+
+Main features CLI:
+
+- Menu
+  - See  menu: 
+    -  cli menu see-entire-menu
+  - Get price of an item:
+    - cli menu item-price --item_id={item_id}
+
+- Order: 
+  - Create a new order (**returns an order id - needed to add items to order**) 
+    - cli order create-order
+
+  - Add item to order (only pizza or drinks): 
+    - cli order add-item-to-order --order_id={order_id} --item_id={item_id}
+
+  - Remove item from order  (only pizza or drinks): : 
+     - cli order remove-item-from-order --order_id={order_id} --item_id={item_id}
+
+  - Add topping to pizza: 
+    - cli order add-topping-to-pizza --order_id={order_id} --pizza_item_id={pizza_item_id} --topping_item_id={topping_item_id}
+
+  - Remove topping from pizza: 
+    - cli order remove-topping-from-pizza --order_id={order_id} --pizza_item_id={pizza_item_id} --topping_item_id={topping_item_id}
+
+  - See order (order details): 
+    - cli order see-order --order_id={order_id}
+
+  - Cancel order: 
+    - cli order cancel-order --order_id={order_id}
+
+- Ask for pickup/delivery:
+    - Pickup:
+      - cli  pickup-or-delivery select-pickup --order_id={order_id}
+
+    - Delivery
+      -  cli  pickup-or-delivery select-delivery_method --order_id={order_id} --method={method name eg ‘uber eats’} --address={address}
+      - Method must be one of {‘ubereats’, ‘in-house’, ‘foodora’}
+
 
 
 Note: a cli method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscores) 
