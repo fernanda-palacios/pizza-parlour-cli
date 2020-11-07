@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_restful import Api, Resource
 
-
 import csv, json
 
 app = Flask(__name__)
@@ -64,9 +63,15 @@ class Order(Resource):
         return new_order_id
 
     def delete(self, order_id):
+        order_id = str(order_id)
         loaded_contents = json.load(open('orders.json', 'r'))
-        loaded_contents.pop(str(order_id))
+
+        if str(order_id) not in loaded_contents.keys():
+            return {'message': 'order id {0} does not exist'.format(order_id)}
+
+        loaded_contents.pop(order_id)
         json.dump(loaded_contents, open('orders.json', 'w'))
+        return {'message': 'order id {0} has been deleted'.format(order_id)}
 
 
 class OrderItem(Resource):
@@ -134,18 +139,29 @@ class PizzaTopping(Resource):
 
 class PickUp(Resource):
     def post(self, order_id):
-#         todo do same thing as cancel order
+        order_id = str(order_id)
+        loaded_contents = json.load(open('orders.json', 'r'))
+
+        if str(order_id) not in loaded_contents.keys():
+            return {'error message': 'the order id does not exist'}
+
+        # item is deleted from orders
+        del(loaded_contents[order_id])
+        json.dump(loaded_contents, open('orders.json', 'w'))
+
+        return {"message": "updated order details"}
 
 
 class Delivery(Resource):
     def post(self, order_id, method, address):
+        pass
 #         todo
 
 
 api.add_resource(PickUp, '/pickup/<int:order_id>')
 api.add_resource(PizzaTopping, '/pizzaTopping/<int:order_id>/<int:pizza_item_id>/<int:topping_item_id>')
 api.add_resource(OrderItem, '/orderItem/<int:order_id>/<int:item_id>')
-api.add_resource(Order, '/order')
+api.add_resource(Order, '/order/<int:order_id>')
 api.add_resource(Menu, '/menu')
 api.add_resource(ItemPrice, '/itemPrice/<int:item_id>')
 
