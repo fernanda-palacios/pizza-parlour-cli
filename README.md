@@ -86,4 +86,8 @@ Run the main Flask module by running `python3 API.py`
 
 ## 4. Tools Used (code craftsmanship)
 
+In order to have a good programming and formatting style in your code, we used the following tools to help us:
+- IDE (Visual Studio Code) and its `format document` command in order to format code during local development
+- Linter github hook (autopep8 - which automatically formats Python code to conform to the PEP 8 style guide) (set up can be found here: https://github.com/csc301-fall-2020/assignment-2-33-shiseru-fernandapalacios/blob/main/lint.yml
+
 
