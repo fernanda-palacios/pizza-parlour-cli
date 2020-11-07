@@ -1,6 +1,7 @@
 import click
 import requests
 
+
 @click.group()
 def menu():
     pass
@@ -11,7 +12,7 @@ def see_full_menu():
     url_format = 'http://127.0.0.1:5000/menu'
     response = requests.get(url_format)
     click.echo('Menu:')
-    click.echo(response.text) 
+    click.echo(response.text)
 
 
 @menu.command()
@@ -25,5 +26,4 @@ def item_price(item_id):
 
     response = requests.get(url_format, params=query_params)
     click.echo('Price:')
-    click.echo(response.text) 
-    
+    click.echo(response.text)
