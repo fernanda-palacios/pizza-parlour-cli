@@ -28,12 +28,11 @@ Any command can be invoked as `cli {group} {command}` (examples section below)
 
 
 
-
-Main features CLI:
+Features based on category/groups:
 
 - Menu
   - See  menu: 
-    -  cli menu see-entire-menu
+    -  `cli menu see-entire-menu`
   - Get price of an item:
     - cli menu item-price --item_id={item_id}
 
