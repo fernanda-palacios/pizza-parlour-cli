@@ -9,12 +9,10 @@
 
 
 ### Running the cli app
-`python3 cli.py`
-
 The commands are divided by groups (categories) and each group has its own available comands
 Any command can be invoked as `cli {group} {command}` (examples section below)
 
-**Groups:**
+**CLI Groups:**
 
 ![alt text](cli_instructions_pictures/groups.png)
 
@@ -32,7 +30,7 @@ Note: a cli method might be implemented as `see_full_menu` but it needs to be ca
 
 
 ### Running the server
-Run the main Flask module by running `python3 PizzaParlour.py`
+Run the main Flask module by running `python3 API.py`
 
 ### Running tests
 - Run API unit tests with coverage by running `pytest --cov-report term --cov=. tests/api_unit_tests.py`
