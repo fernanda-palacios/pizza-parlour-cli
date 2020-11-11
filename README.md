@@ -32,7 +32,7 @@ Features based on category/groups:
 
 - Menu
   - See  menu: 
-    -  `cli menu see-entire-menu`
+    -  `cli menu see-full-menu`
   - Get price of an item:
     - `cli menu item-price --item_id={item_id}`
 
