@@ -72,7 +72,6 @@ class OrderDelete(Resource):
         return {'message': 'order id {0} has been deleted'.format(order_id)}
 
 
-
 class OrderItem(Resource):
     def post(self, order_id, item_id):
         order_id, item_id = str(order_id), str(item_id)
@@ -116,7 +115,6 @@ class PizzaTopping(Resource):
         if pizza_item_id in loaded_contents[order_id] and topping_item_id not in loaded_contents[order_id][pizza_item_id]:
             loaded_contents[order_id][pizza_item_id].append(topping_item_id)
 
-        # jsonify的なのいるかも
         json.dump(loaded_contents, open('orders.json', 'w'))
         return loaded_contents
 
@@ -130,20 +128,16 @@ class PizzaTopping(Resource):
         if pizza_item_id not in loaded_contents[order_id]:
             return {'error message': 'the pizza item id not in order'}
 
-        # toppingをsetにした方がいいかもしれない？ 絶対
-        popped_index = -1
+        toppings = set(loaded_contents[order_id][pizza_item_id])
 
-        for i, x in enumerate(loaded_contents[order_id][pizza_item_id]):
-            if x == topping_item_id:
-                popped_index = i
+        if topping_item_id not in toppings:
+            return {'message': 'topping is not used on Pizza'}
 
-        if popped_index == -1:
-            return {'error message': 'topping item id does not exist'}
+        toppings.remove(topping_item_id)
+        loaded_contents[order_id][pizza_item_id] = list(toppings)
+        json.dump(loaded_contents, open('orders.json', 'w'))
 
-        return popped_index
-        # todo search the way to delete the poped index
-        del(loaded_contents[order_id][pizza_item_id][popped_index])
-        return {"updated order details": {loaded_contents[order_id]}}
+        return {"message": "topping id {} deleted from order".format(topping_item_id)}
 
 
 class PickUp(Resource):
