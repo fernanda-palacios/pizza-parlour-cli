@@ -16,7 +16,8 @@ def select_pickup(order_id):
         'order_id': order_id
     }
 
-    response = requests.post(url_format, params=query_params)
+    # response = requests.post(url_format, params=query_params)
+    response = requests.post(url_format+'/{}'.format(order_id))
     click.echo('Pickup has been selected')
     click.echo(response.text)
 
@@ -40,6 +41,7 @@ def select_delivery_method(order_id, method, address):
         'order_details_format': order_details_format
     }
 
-    response = requests.post(url_format, params=query_params)
+    # response = requests.post(url_format, params=query_params)
+    response = requests.post(url_format+'/{}/{}/{}'.format(order_id, method, address, order_details_format))
     click.echo('Delivery has been selected')
     click.echo(response.text)
