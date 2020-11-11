@@ -102,7 +102,6 @@ class OrderItem(Resource):
         return {"message": "updated order details"}
 
 
-
 class PizzaTopping(Resource):
     def post(self, order_id, pizza_item_id, topping_item_id):
         order_id, pizza_item_id, topping_item_id = str(order_id), str(pizza_item_id), str(topping_item_id)
@@ -115,14 +114,15 @@ class PizzaTopping(Resource):
             return {'error message': 'the pizza item id not in order'}
 
         # forbid duplicated toppings to be added twice
-        loaded_contents[order_id][pizza_item_id].append(topping_item_id)
+        if pizza_item_id in loaded_contents[order_id] and topping_item_id not in loaded_contents[order_id][pizza_item_id]:
+            loaded_contents[order_id][pizza_item_id].append(topping_item_id)
 
         # jsonify的なのいるかも
+        json.dump(loaded_contents, open('orders.json', 'w'))
         return loaded_contents
 
-        return {"updated order details": {loaded_contents[order_id]}}
-
     def delete(self, order_id, pizza_item_id, topping_item_id):
+        order_id, pizza_item_id, topping_item_id = str(order_id), str(pizza_item_id), str(topping_item_id)
         loaded_contents = json.load(open('orders.json', 'r'))
 
         if order_id not in loaded_contents:
@@ -132,8 +132,18 @@ class PizzaTopping(Resource):
             return {'error message': 'the pizza item id not in order'}
 
         # toppingをsetにした方がいいかもしれない？ 絶対
-        loaded_contents[order_id][pizza_item_id].remove(topping_item_id)
+        popped_index = -1
 
+        for i, x in enumerate(loaded_contents[order_id][pizza_item_id]):
+            if x == topping_item_id:
+                popped_index = i
+
+        if popped_index == -1:
+            return {'error message': 'topping item id does not exist'}
+
+        return popped_index
+        # todo search the way to delete the poped index
+        del(loaded_contents[order_id][pizza_item_id][popped_index])
         return {"updated order details": {loaded_contents[order_id]}}
 
 
@@ -154,10 +164,26 @@ class PickUp(Resource):
 
 class Delivery(Resource):
     def post(self, order_id, method, address):
-        pass
-#         todo
+        order_id = str(order_id)
+        loaded_contents = json.load(open('orders.json', 'r'))
+
+        if str(order_id) not in loaded_contents.keys():
+            return {'error message': 'the order id does not exist'}
+
+        order_details_json = {
+            "details": loaded_contents[order_id],
+            "method": method,
+            "address": address
+        }
+
+        del(loaded_contents[order_id])
+
+        # todo move the delivery info to somewhere?
+
+        return order_details_json
 
 
+api.add_resource(Delivery, '/delivery/<int:order_id>/<int:method>/<string:address>/<string:order_details_format>')
 api.add_resource(PickUp, '/pickup/<int:order_id>')
 api.add_resource(PizzaTopping, '/pizzaTopping/<int:order_id>/<int:pizza_item_id>/<int:topping_item_id>')
 api.add_resource(OrderItem, '/orderItem/<int:order_id>/<int:item_id>')
