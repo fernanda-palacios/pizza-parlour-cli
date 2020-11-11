@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_restful import Api, Resource
 
-import csv, json
+import csv
+import json
 
 app = Flask(__name__)
 api = Api(app)
@@ -26,7 +27,6 @@ class Menu(Resource):
             reader = csv.reader(file)
             contents = [row for row in reader]
 
-        # return {'menu': contents}
         pizzas = []
         toppings = []
         drinks = []
@@ -47,21 +47,19 @@ class Menu(Resource):
 class Order(Resource):
     def get(self):
         loaded_contents = json.load(open('orders.json', 'r'))
-        return {'orders': loaded_contents}
+        return loaded_contents
 
     def post(self):
         loaded_contents = json.load(open('orders.json', 'r'))
-
-        if len(loaded_contents) == 0:
-            new_order_id = 1
-        else:
-            new_order_id = max([int(key) for key in loaded_contents.keys()]) + 1
+        new_order_id = max([int(key) for key in loaded_contents.keys()]) + 1 if len(loaded_contents) > 0 else 1
 
         loaded_contents[new_order_id] = {}
         json.dump(loaded_contents, open('orders.json', 'w'))
 
         return new_order_id
 
+
+class OrderDelete(Resource):
     def delete(self, order_id):
         order_id = str(order_id)
         loaded_contents = json.load(open('orders.json', 'r'))
@@ -72,6 +70,7 @@ class Order(Resource):
         loaded_contents.pop(order_id)
         json.dump(loaded_contents, open('orders.json', 'w'))
         return {'message': 'order id {0} has been deleted'.format(order_id)}
+
 
 
 class OrderItem(Resource):
@@ -177,9 +176,6 @@ class Delivery(Resource):
         }
 
         del(loaded_contents[order_id])
-
-        # todo move the delivery info to somewhere?
-
         return order_details_json
 
 
@@ -187,9 +183,10 @@ api.add_resource(Delivery, '/delivery/<int:order_id>/<int:method>/<string:addres
 api.add_resource(PickUp, '/pickup/<int:order_id>')
 api.add_resource(PizzaTopping, '/pizzaTopping/<int:order_id>/<int:pizza_item_id>/<int:topping_item_id>')
 api.add_resource(OrderItem, '/orderItem/<int:order_id>/<int:item_id>')
-api.add_resource(Order, '/order/<int:order_id>')
+api.add_resource(Order, '/order')
+api.add_resource(OrderDelete, '/order/<int:order_id>')
 api.add_resource(Menu, '/menu')
 api.add_resource(ItemPrice, '/itemPrice/<int:item_id>')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
