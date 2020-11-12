@@ -76,18 +76,18 @@ If a client wishes to customize the prices used while running the application or
 
 
 
-### Running tests and coverage
+## 2. Running tests and coverage
 
 - Run API unit tests with coverage for **API files** by running `pytest --cov-report term --cov=. tests/api_unit_tests.py`
 
 - Run our CLI tests with coverage for **CLI files** by running `pytest --cov-report term --cov=. tests/cli_tests.py`
 
 
-## 2. Pair Programming
+## 3. Pair Programming
 
-## 3. Program Design
+## 4. Program Design
 
-## 4. Tools Used (code craftsmanship)
+## 5. Tools Used (code craftsmanship)
 
 In order to have a good programming and formatting style in your code, we used the following tools to help us:
 - IDE (Visual Studio Code) and its `format document` command in order to format code during local development
