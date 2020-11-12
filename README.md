@@ -5,7 +5,7 @@
 
 ### Setup
 - `pip install -r requirements.txt` install dependencies
-- `python3 -m pip install --editable .` for cli app to work with the entry point of 'cli'
+- `python3 -m pip install --editable .` for CLI app to work with the entry point of 'CLI'
 
 
 ### Running the pizza parlour application
@@ -13,7 +13,7 @@
 - First, run the server: `python3 API.py`
 - The CLI can then be used on a separate shell. CLI commands can be invoked as `cli {group} {command}` (examples section available below)
 
-Note: The commands are divided by groups (`menu`, `order`, `pickup-or-delivery`) and each group has its own available comands (e.g. `cli menu see-full-menu`)(full documentation below)
+*Note: The commands are divided by groups (`menu`, `order`, `pickup-or-delivery`) and each group has its own available comands (e.g. `cli menu see-full-menu`)(full documentation below)
 
 
 ### Menu and item id's
@@ -64,10 +64,10 @@ Features based on category/groups:
       -  `cli  pickup-or-delivery select-delivery-method --order_id={order_id} --method={one of: ‘ubereats’, ‘in-house’, ‘foodora’} --address={address}`
 
 
-Note: ensure the CLI is used with valid cases (cancel an existing order, add pizza then topping, remove existing item, etc)
+*Note: ensure the CLI is used with valid cases (cancel an existing order, add pizza then topping, remove existing item, etc)
 
 
-Note: a cli method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscores) 
+*Note: a CLI method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscores) 
 
 
 
