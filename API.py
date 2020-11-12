@@ -159,7 +159,7 @@ class PickUp(Resource):
         del(loaded_contents[order_id])
         json.dump(loaded_contents, open('orders.json', 'w'))
 
-        return {"message": "updated order details"}
+        return {"message": "order id {} is picked up".format(order_id)}
 
 
 class Delivery(Resource):
