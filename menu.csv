@@ -2,3 +2,27 @@ id,category,title,size,price
 1,pizza,pepperoni,S,10
 2,pizza,pepperoni,M,15
 3,pizza,pepperoni,L,20
+4,pizza,margherita,S,10
+5,pizza,margherita,M,14
+6,pizza,margherita,L,21
+7,pizza,vegetarian,S,10
+8,pizza,vegetarian,M,14
+9,pizza,vegetarian,L,21
+10,pizza,Neapolitan,S,10
+11,pizza,Neapolitan,M,14
+12,pizza,Neapolitan,L,21
+13,Topping,olives,,3
+14,Topping,tomatoes,,3
+15,Topping,mushrooms,,3
+16,Topping,jalapenos,,3
+17,Topping,chicken,,3
+18,Topping,beef,,3
+19,Topping,pepperoni,,3
+20,drink,Coke,,5
+21,drink,Diet Coke,,5
+22,drink,Coke Zero,,4
+23,drink,Pepsi,,2
+24,drink,Diet Pepsi,,5
+25,drink,Dr. Pepper,,5
+26,drink,Water,,5
+27,drink,Juice,,3
