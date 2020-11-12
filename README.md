@@ -24,6 +24,16 @@ Any command can be invoked as `cli {group} {command}` (examples section below)
 
 ![alt text](cli_instructions_pictures/pickup-or-delivery_commands.png)
 
+
+### Menu and item id's
+
+The menu is organized based on item id's (first column), required to use the application
+![alt text](various_readme_pictures/menu.png)
+
+#### Dynamically changing prices / customizing items:
+If a client wishes to customize the prices used while running the application or to include a new pizza / item, they can do so by modifying the content from `menu.csv`: https://github.com/csc301-fall-2020/assignment-2-33-shiseru-fernandapalacios/blob/main/menu.csv
+
+
 ### Example usage of CLI/ documentation
 
 
