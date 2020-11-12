@@ -63,8 +63,7 @@ Features based on category/groups:
       - `cli  pickup-or-delivery select-pickup --order_id={order_id}`
 
     - Delivery
-      -  `cli  pickup-or-delivery select-delivery-method --order_id={order_id} --method={method name eg ‘uber eats’} --address={address}`
-      - Method must be one of {‘ubereats’, ‘in-house’, ‘foodora’}
+      -  `cli  pickup-or-delivery select-delivery-method --order_id={order_id} --method={one of: ‘ubereats’, ‘in-house’, ‘foodora’} --address={address}`
 
 
 
