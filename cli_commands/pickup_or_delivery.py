@@ -11,12 +11,6 @@ def pickup_or_delivery():
 @click.option('--order_id')
 def select_pickup(order_id):
     url_format = 'http://127.0.0.1:5000/pickup'
-
-    query_params = {
-        'order_id': order_id
-    }
-
-    # response = requests.post(url_format, params=query_params)
     response = requests.post(url_format+'/{}'.format(order_id))
     click.echo('Pickup has been selected')
     click.echo(response.text)
@@ -34,14 +28,6 @@ def select_delivery_method(order_id, method, address):
     elif method == 'foodora':
         order_details_format = 'csv'
 
-    query_params = {
-        'order_id': order_id,
-        'method': method,
-        'address': address,
-        'order_details_format': order_details_format
-    }
-
-    # response = requests.post(url_format, params=query_params)
     response = requests.post(url_format+'/{}/{}/{}'.format(order_id, method, address, order_details_format))
     click.echo('Delivery has been selected')
     click.echo(response.text)
