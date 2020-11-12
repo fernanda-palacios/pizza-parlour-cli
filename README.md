@@ -64,6 +64,8 @@ Features based on category/groups:
       -  `cli  pickup-or-delivery select-delivery-method --order_id={order_id} --method={one of: ‘ubereats’, ‘in-house’, ‘foodora’} --address={address}`
 
 
+Note: ensure the CLI is used with valid cases (cancel an existing order, add pizza then topping, remove existing item, etc)
+
 
 Note: a cli method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscores) 
 
@@ -74,10 +76,11 @@ If a client wishes to customize the prices used while running the application or
 
 
 
-### Running tests
-- Run API unit tests with coverage by running `pytest --cov-report term --cov=. tests/api_unit_tests.py`
+### Running tests and coverage
 
-- Run our CLI tests with coverage by running `pytest --cov-report term --cov=. tests/cli_tests.py`
+- Run API unit tests with coverage for **API files** by running `pytest --cov-report term --cov=. tests/api_unit_tests.py`
+
+- Run our CLI tests with coverage for **CLI files** by running `pytest --cov-report term --cov=. tests/cli_tests.py`
 
 
 ## 2. Pair Programming
