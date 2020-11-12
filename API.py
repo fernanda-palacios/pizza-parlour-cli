@@ -8,19 +8,6 @@ app = Flask(__name__)
 api = Api(app)
 
 
-class ItemPrice(Resource):
-    def get(self, item_id):
-        price_index = 4
-        with open('./menu.csv') as file:
-            reader = csv.reader(file)
-            contents = [row for row in reader]
-
-        if item_id >= len(contents):
-            return {'message': 'item_id does not exist'}
-
-        return contents[item_id][price_index]
-
-
 class Menu(Resource):
     def get(self):
         with open('./menu.csv') as file:
@@ -42,6 +29,19 @@ class Menu(Resource):
                 drinks.append(row)
 
         return {'pizzas': pizzas, 'toppings': toppings, 'drinks': drinks}
+
+
+class ItemPrice(Resource):
+    def get(self, item_id):
+        price_index = 4
+        with open('./menu.csv') as file:
+            reader = csv.reader(file)
+            contents = [row for row in reader]
+
+        if item_id >= len(contents):
+            return {'message': 'item_id does not exist'}
+
+        return contents[item_id][price_index]
 
 
 class Order(Resource):
@@ -118,8 +118,7 @@ class PizzaTopping(Resource):
         json.dump(loaded_contents, open('orders.json', 'w'))
         return loaded_contents
 
-    def delete(self, order_id, pizza_item_id, topping_item_id):
-        order_id, pizza_item_id, topping_item_id = str(order_id), str(pizza_item_id), str(topping_item_id)
+    def delete(self, order_id, pizza_item_id, topping_item_id): #     order_id, pizza_item_id, topping_item_id = str(order_id), str(pizza_item_id), str(topping_item_id)
         loaded_contents = json.load(open('orders.json', 'r'))
 
         if order_id not in loaded_contents:
@@ -173,14 +172,14 @@ class Delivery(Resource):
         return order_details_json
 
 
-api.add_resource(Delivery, '/delivery/<int:order_id>/<int:method>/<string:address>/<string:order_details_format>')
-api.add_resource(PickUp, '/pickup/<int:order_id>')
-api.add_resource(PizzaTopping, '/pizzaTopping/<int:order_id>/<int:pizza_item_id>/<int:topping_item_id>')
-api.add_resource(OrderItem, '/orderItem/<int:order_id>/<int:item_id>')
-api.add_resource(Order, '/order')
-api.add_resource(OrderDelete, '/order/<int:order_id>')
 api.add_resource(Menu, '/menu')
 api.add_resource(ItemPrice, '/itemPrice/<int:item_id>')
+api.add_resource(Order, '/order')
+api.add_resource(OrderDelete, '/order/<int:order_id>')
+api.add_resource(OrderItem, '/orderItem/<int:order_id>/<int:item_id>')
+api.add_resource(PizzaTopping, '/pizzaTopping/<string:order_id>/<string:pizza_item_id>/<string:topping_item_id>')
+api.add_resource(PickUp, '/pickup/<int:order_id>')
+api.add_resource(Delivery, '/delivery/<string:order_id>/<string:method>/<string:address>')
 
 if __name__ == "__main__":
     app.run(debug=True)
