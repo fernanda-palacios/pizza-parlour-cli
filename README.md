@@ -32,7 +32,7 @@ Features based on category/groups:
 
 - Menu
   - See  menu: 
-    -  `cli menu see-entire-menu`
+    -  `cli menu see-full-menu`
   - Get price of an item:
     - `cli menu item-price --item_id={item_id}`
 
@@ -63,7 +63,7 @@ Features based on category/groups:
       - `cli  pickup-or-delivery select-pickup --order_id={order_id}`
 
     - Delivery
-      -  `cli  pickup-or-delivery select-delivery_method --order_id={order_id} --method={method name eg ‘uber eats’} --address={address}`
+      -  `cli  pickup-or-delivery select-delivery-method --order_id={order_id} --method={method name eg ‘uber eats’} --address={address}`
       - Method must be one of {‘ubereats’, ‘in-house’, ‘foodora’}
 
 

@@ -8,19 +8,6 @@ app = Flask(__name__)
 api = Api(app)
 
 
-class ItemPrice(Resource):
-    def get(self, item_id):
-        price_index = 4
-        with open('./menu.csv') as file:
-            reader = csv.reader(file)
-            contents = [row for row in reader]
-
-        if item_id >= len(contents):
-            return {'message': 'item_id does not exist'}
-
-        return contents[item_id][price_index]
-
-
 class Menu(Resource):
     def get(self):
         with open('./menu.csv') as file:
@@ -42,6 +29,19 @@ class Menu(Resource):
                 drinks.append(row)
 
         return {'pizzas': pizzas, 'toppings': toppings, 'drinks': drinks}
+
+
+class ItemPrice(Resource):
+    def get(self, item_id):
+        price_index = 4
+        with open('./menu.csv') as file:
+            reader = csv.reader(file)
+            contents = [row for row in reader]
+
+        if item_id >= len(contents):
+            return {'message': 'item_id does not exist'}
+
+        return contents[item_id][price_index]
 
 
 class Order(Resource):
@@ -70,7 +70,6 @@ class OrderDelete(Resource):
         loaded_contents.pop(order_id)
         json.dump(loaded_contents, open('orders.json', 'w'))
         return {'message': 'order id {0} has been deleted'.format(order_id)}
-
 
 
 class OrderItem(Resource):
@@ -116,12 +115,10 @@ class PizzaTopping(Resource):
         if pizza_item_id in loaded_contents[order_id] and topping_item_id not in loaded_contents[order_id][pizza_item_id]:
             loaded_contents[order_id][pizza_item_id].append(topping_item_id)
 
-        # jsonify的なのいるかも
         json.dump(loaded_contents, open('orders.json', 'w'))
         return loaded_contents
 
-    def delete(self, order_id, pizza_item_id, topping_item_id):
-        order_id, pizza_item_id, topping_item_id = str(order_id), str(pizza_item_id), str(topping_item_id)
+    def delete(self, order_id, pizza_item_id, topping_item_id): #     order_id, pizza_item_id, topping_item_id = str(order_id), str(pizza_item_id), str(topping_item_id)
         loaded_contents = json.load(open('orders.json', 'r'))
 
         if order_id not in loaded_contents:
@@ -130,20 +127,16 @@ class PizzaTopping(Resource):
         if pizza_item_id not in loaded_contents[order_id]:
             return {'error message': 'the pizza item id not in order'}
 
-        # toppingをsetにした方がいいかもしれない？ 絶対
-        popped_index = -1
+        toppings = set(loaded_contents[order_id][pizza_item_id])
 
-        for i, x in enumerate(loaded_contents[order_id][pizza_item_id]):
-            if x == topping_item_id:
-                popped_index = i
+        if topping_item_id not in toppings:
+            return {'message': 'topping is not used on Pizza'}
 
-        if popped_index == -1:
-            return {'error message': 'topping item id does not exist'}
+        toppings.remove(topping_item_id)
+        loaded_contents[order_id][pizza_item_id] = list(toppings)
+        json.dump(loaded_contents, open('orders.json', 'w'))
 
-        return popped_index
-        # todo search the way to delete the poped index
-        del(loaded_contents[order_id][pizza_item_id][popped_index])
-        return {"updated order details": {loaded_contents[order_id]}}
+        return {"message": "topping id {} deleted from order".format(topping_item_id)}
 
 
 class PickUp(Resource):
@@ -179,14 +172,14 @@ class Delivery(Resource):
         return order_details_json
 
 
-api.add_resource(Delivery, '/delivery/<int:order_id>/<int:method>/<string:address>/<string:order_details_format>')
-api.add_resource(PickUp, '/pickup/<int:order_id>')
-api.add_resource(PizzaTopping, '/pizzaTopping/<int:order_id>/<int:pizza_item_id>/<int:topping_item_id>')
-api.add_resource(OrderItem, '/orderItem/<int:order_id>/<int:item_id>')
-api.add_resource(Order, '/order')
-api.add_resource(OrderDelete, '/order/<int:order_id>')
 api.add_resource(Menu, '/menu')
 api.add_resource(ItemPrice, '/itemPrice/<int:item_id>')
+api.add_resource(Order, '/order')
+api.add_resource(OrderDelete, '/order/<int:order_id>')
+api.add_resource(OrderItem, '/orderItem/<int:order_id>/<int:item_id>')
+api.add_resource(PizzaTopping, '/pizzaTopping/<string:order_id>/<string:pizza_item_id>/<string:topping_item_id>')
+api.add_resource(PickUp, '/pickup/<int:order_id>')
+api.add_resource(Delivery, '/delivery/<string:order_id>/<string:method>/<string:address>')
 
 if __name__ == "__main__":
     app.run(debug=True)

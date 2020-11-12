@@ -1,4 +1,5 @@
 from API import app
+import json
 
 
 # Menu
@@ -29,41 +30,61 @@ def test_post_order():
     assert response.status_code == 200
 
 
+# OrderDelete
 def test_delete_non_existing_order():
     targeted_order_id = 100
     response = app.test_client().delete('/order/{}'.format(targeted_order_id))
-    assert response.json == {'message': 'order id {0} does not exist'.format(targeted_order_id)}
+    assert response.status_code == 200
 
 
 def test_delete_existing_order():
-    targeted_order_id = 0
+    loaded_contents = json.load(open('orders.json', 'r'))
+    targeted_order_id = "10000000"
+    loaded_contents[targeted_order_id] = {}
+    json.dump(loaded_contents, open('orders.json', 'w'))
     response = app.test_client().delete('/order/{}'.format(targeted_order_id))
     assert response.status_code == 200
 
 
 # OrderItem
-def test_post_order_item():
-    targeted_order_id = 100
+def test_post_item_to_non_existing_order():
+    targeted_order_id = 1000000
     targeted_item_id = 1
     response = app.test_client().post('/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
     assert response.status_code == 200
 
 
-def test_delete_order_item():
+def test_post_item_to_existing_order():
+    loaded_contents = json.load(open('orders.json', 'r'))
+    targeted_order_id = "1"
+    loaded_contents[targeted_order_id] = {}
+    json.dump(loaded_contents, open('orders.json', 'w'))
+    targeted_order_id = 1
+    targeted_item_id = 1
+    response = app.test_client().post('/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
+    assert response.status_code == 200
+
+
+def test_delete_item_from_non_existing_order():
     targeted_order_id = 100
     targeted_item_id = 1
     response = app.test_client().delete('/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
     assert response.status_code == 200
 
 
-def test_pick_up():
-    targeted_order_id = 100
-    response = app.test_client().post('/pickup/{}'.format(targeted_order_id))
+def test_delete_item_from_existing_order():
+    loaded_contents = json.load(open('orders.json', 'r'))
+    targeted_order_id = "1"
+    loaded_contents[targeted_order_id] = {1:[]}
+    json.dump(loaded_contents, open('orders.json', 'w'))
+    targeted_order_id = 1
+    targeted_item_id = 1
+    response = app.test_client().delete('/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
     assert response.status_code == 200
 
-
-def test_post_pizza_topping():
-    targeted_order_id = 100
+# Pizza
+def test_post_topping_to_non_existing_order():
+    targeted_order_id = 10000
     targeted_pizza_item_id = 1
     targeted_topping_item_id = 4
     response = app.test_client().post('/pizzaTopping/{}/{}/{}'.format(
@@ -72,8 +93,76 @@ def test_post_pizza_topping():
     assert response.status_code == 200
 
 
-def test_delete_pizza_topping():
+def test_post_topping_to_non_existing_pizza():
+    loaded_contents = json.load(open('orders.json', 'r'))
+    targeted_order_id = "1"
+    loaded_contents[targeted_order_id] = {1:[]}
+    json.dump(loaded_contents, open('orders.json', 'w'))
+    targeted_order_id = 1
+    targeted_pizza_item_id = 2
+    targeted_topping_item_id = 4
+    response = app.test_client().post('/pizzaTopping/{}/{}/{}'.format(
+        targeted_order_id, targeted_pizza_item_id, targeted_topping_item_id
+    ))
+    assert response.status_code == 200
+
+
+def test_post_topping_to_existing_pizza():
+    loaded_contents = json.load(open('orders.json', 'r'))
+    targeted_order_id = "1"
+    loaded_contents[targeted_order_id] = {1:[]}
+    json.dump(loaded_contents, open('orders.json', 'w'))
+    targeted_order_id = 1
+    targeted_pizza_item_id = 1
+    targeted_topping_item_id = 4
+    response = app.test_client().post('/pizzaTopping/{}/{}/{}'.format(
+        targeted_order_id, targeted_pizza_item_id, targeted_topping_item_id
+    ))
+    assert response.status_code == 200
+
+
+def test_delete_topping_from_non_existing_order():
     targeted_order_id = 100
+    targeted_item_id = 1
+    response = app.test_client().delete('/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
+    assert response.status_code == 200
+
+
+def test_delete_topping_from_non_existing_pizza():
+    loaded_contents = json.load(open('orders.json', 'r'))
+    targeted_order_id = 1
+    targeted_pizza_item_id = 2
+    targeted_topping_item_id = 4
+
+    loaded_contents[targeted_order_id] = {1: []}
+
+    json.dump(loaded_contents, open('orders.json', 'w'))
+    response = app.test_client().delete('/pizzaTopping/{}/{}/{}'.format(
+        targeted_order_id, targeted_pizza_item_id, targeted_topping_item_id
+    ))
+    assert response.status_code == 200
+
+
+def test_delete_not_used_topping():
+    loaded_contents = json.load(open('orders.json', 'r'))
+    targeted_order_id = 1
+    loaded_contents[targeted_order_id] = {1: ["4"]}
+    json.dump(loaded_contents, open('orders.json', 'w'))
+    targeted_order_id = 1
+    targeted_pizza_item_id = 1
+    targeted_topping_item_id = 3
+    response = app.test_client().delete('/pizzaTopping/{}/{}/{}'.format(
+        targeted_order_id, targeted_pizza_item_id, targeted_topping_item_id
+    ))
+    assert response.status_code == 200
+
+
+def test_delete_topping_from_existing_pizza():
+    loaded_contents = json.load(open('orders.json', 'r'))
+    targeted_order_id = 1
+    loaded_contents[targeted_order_id] = {1: ["4"]}
+    json.dump(loaded_contents, open('orders.json', 'w'))
+    targeted_order_id = 1
     targeted_pizza_item_id = 1
     targeted_topping_item_id = 4
     response = app.test_client().delete('/pizzaTopping/{}/{}/{}'.format(
@@ -81,3 +170,42 @@ def test_delete_pizza_topping():
     ))
     assert response.status_code == 200
 
+
+# Pickup
+def test_pick_up_non_existing_order():
+    targeted_order_id = 10000
+    response = app.test_client().post('/pickup/{}'.format(targeted_order_id))
+    assert response.status_code == 200
+
+
+def test_pick_up_existing_order():
+    loaded_contents = json.load(open('orders.json', 'r'))
+    targeted_order_id = 1
+    loaded_contents[targeted_order_id] = {1: []}
+    json.dump(loaded_contents, open('orders.json', 'w'))
+    targeted_order_id = 1
+    response = app.test_client().post('/pickup/{}'.format(targeted_order_id))
+    assert response.status_code == 200
+
+
+# Delivery
+def test_delivery_non_existing_order_id():
+    targeted_order_id = 100000
+    targeted_method = "uber-eats"
+    targeted_address = "Toronto"
+    response = app.test_client().post('/delivery/{}/{}/{}'.format(
+        targeted_order_id, targeted_method, targeted_address))
+    assert response.status_code == 200
+
+
+def test_delivery_existing_order_id():
+    loaded_contents = json.load(open('orders.json', 'r'))
+    targeted_order_id = 1
+    loaded_contents[targeted_order_id] = {1: ["4"]}
+    json.dump(loaded_contents, open('orders.json', 'w'))
+
+    targeted_method = "uber-eats"
+    targeted_address = "Toronto"
+    response = app.test_client().post('/delivery/{}/{}/{}'.format(
+        targeted_order_id, targeted_method, targeted_address))
+    assert response.status_code == 200
