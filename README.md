@@ -5,7 +5,7 @@
 
 ### Setup
 - `pip install -r requirements.txt` install dependencies
-- `python3 -m pip install --editable .` for cli app to work with the entry point of 'cli'
+- `python3 -m pip install --editable .` for CLI app to work with the entry point of `cli`
 
 
 ### Running the pizza parlour application
@@ -13,7 +13,7 @@
 - First, run the server: `python3 API.py`
 - The CLI can then be used on a separate shell. CLI commands can be invoked as `cli {group} {command}` (examples section available below)
 
-Note: The commands are divided by groups (`menu`, `order`, `pickup-or-delivery`) and each group has its own available comands (e.g. `cli menu see-full-menu`)(full documentation below)
+*Note: The commands are divided by groups (`menu`, `order`, `pickup-or-delivery`) and each group has its own available comands (e.g. `cli menu see-full-menu`)(full documentation below)
 
 
 ### Menu and item id's
@@ -64,8 +64,10 @@ Features based on category/groups:
       -  `cli  pickup-or-delivery select-delivery-method --order_id={order_id} --method={one of: ‘ubereats’, ‘in-house’, ‘foodora’} --address={address}`
 
 
+*Note: ensure the CLI is used with valid cases (cancel an existing order, add pizza then topping, remove existing item, etc)
 
-Note: a cli method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscores) 
+
+*Note: a CLI method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscores) 
 
 
 
@@ -74,20 +76,21 @@ If a client wishes to customize the prices used while running the application or
 
 
 
-### Running tests
-- Run API unit tests with coverage by running `pytest --cov-report term --cov=. tests/api_unit_tests.py`
+## 2. Running tests and coverage
 
-- Run our CLI tests with coverage by running `pytest --cov-report term --cov=. tests/cli_tests.py`
+- Run API unit tests with coverage for **API files** by running `pytest --cov-report term --cov=. tests/api_unit_tests.py`
+
+- Run our CLI tests with coverage for **CLI files** by running `pytest --cov-report term --cov=. tests/cli_tests.py`
 
 
-## 2. Pair Programming
+## 3. Pair Programming
 
-## 3. Program Design
+## 4. Program Design
 
-## 4. Tools Used (code craftsmanship)
+## 5. Tools Used (code craftsmanship)
 
-In order to have a good programming and formatting style in your code, we used the following tools to help us:
-- IDE (Visual Studio Code) and its `format document` command in order to format code during local development
+In order to have a good programming and formatting style in our code, we used the following tools to help us:
+- IDE (Visual Studio Code) and its `format document` command in order to format code during local development. In order to use this command, we installed an extension on Visual Studio Code for formatting python based on the python's standard PEP 8 style guide.
 - Linter github hook (autopep8 - which automatically formats Python code to conform to the PEP 8 style guide) (set up can be found here: https://github.com/csc301-fall-2020/assignment-2-33-shiseru-fernandapalacios/blob/main/lint.yml
 
 
