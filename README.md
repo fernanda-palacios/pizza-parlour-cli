@@ -8,24 +8,22 @@
 - `python3 -m pip install --editable .` for cli app to work with the entry point of 'cli'
 
 
-### Running the cli app
-The commands are divided by groups (categories) and each group has its own available comands
-Any command can be invoked as `cli {group} {command}` (examples section below)
+### Running the pizza parlour application
 
-**CLI Groups:**
+- First, run the server: `python3 API.py`
+- The CLI can then be used on a separate shell. CLI commands can be invoked as `cli {group} {command}` (examples section available below)
 
-![alt text](cli_instructions_pictures/groups.png)
+Note: The commands are divided by groups (`menu`, `order`, `pickup-or-delivery`) and each group has its own available comands (e.g. `cli menu see-full-menu`)(full documentation below)
 
 
-**Comands for each group**
-![alt text](cli_instructions_pictures/menu_commands.png)
+### Menu and item id's
 
-![alt text](cli_instructions_pictures/order_commands.png)
+The menu is organized based on item id's (first column), required to use the application.
+![alt text](various_readme_pictures/menu.png)
 
-![alt text](cli_instructions_pictures/pickup-or-delivery_commands.png)
+
 
 ### Example usage of CLI/ documentation
-
 
 
 Features based on category/groups:
@@ -70,8 +68,11 @@ Features based on category/groups:
 Note: a cli method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscores) 
 
 
-### Running the server
-Run the main Flask module by running `python3 API.py`
+
+#### Dynamically changing prices / customizing items:
+If a client wishes to customize the prices used while running the application or to include a new pizza / item, they can do so by modifying the content from `menu.csv`: https://github.com/csc301-fall-2020/assignment-2-33-shiseru-fernandapalacios/blob/main/menu.csv
+
+
 
 ### Running tests
 - Run API unit tests with coverage by running `pytest --cov-report term --cov=. tests/api_unit_tests.py`
