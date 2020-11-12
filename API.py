@@ -59,7 +59,15 @@ class Order(Resource):
         return new_order_id
 
 
-class OrderDelete(Resource):
+class OrderOperation(Resource):
+    def get(self, order_id):
+        order_id = str(order_id)
+        loaded_contents = json.load(open('orders.json', 'r'))
+        if order_id not in loaded_contents.keys():
+            return {'message': 'order id {0} does not exist'.format(order_id)}
+
+        return loaded_contents[order_id]
+
     def delete(self, order_id):
         order_id = str(order_id)
         loaded_contents = json.load(open('orders.json', 'r'))
@@ -116,7 +124,7 @@ class PizzaTopping(Resource):
             loaded_contents[order_id][pizza_item_id].append(topping_item_id)
 
         json.dump(loaded_contents, open('orders.json', 'w'))
-        return loaded_contents
+        return loaded_contents[order_id]
 
     def delete(self, order_id, pizza_item_id, topping_item_id): #     order_id, pizza_item_id, topping_item_id = str(order_id), str(pizza_item_id), str(topping_item_id)
         loaded_contents = json.load(open('orders.json', 'r'))
@@ -175,7 +183,7 @@ class Delivery(Resource):
 api.add_resource(Menu, '/menu')
 api.add_resource(ItemPrice, '/itemPrice/<int:item_id>')
 api.add_resource(Order, '/order')
-api.add_resource(OrderDelete, '/order/<int:order_id>')
+api.add_resource(OrderOperation, '/order/<int:order_id>')
 api.add_resource(OrderItem, '/orderItem/<int:order_id>/<int:item_id>')
 api.add_resource(PizzaTopping, '/pizzaTopping/<string:order_id>/<string:pizza_item_id>/<string:topping_item_id>')
 api.add_resource(PickUp, '/pickup/<int:order_id>')

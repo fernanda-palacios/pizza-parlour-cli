@@ -30,7 +30,22 @@ def test_post_order():
     assert response.status_code == 200
 
 
-# OrderDelete
+# OrderOperation
+def test_get_non_existing_order():
+    targeted_order_id = 100
+    response = app.test_client().get('/order/{}'.format(targeted_order_id))
+    assert response.status_code == 200
+
+
+def test_get_existing_order():
+    loaded_contents = json.load(open('orders.json', 'r'))
+    targeted_order_id = "1"
+    loaded_contents[targeted_order_id] = {}
+    json.dump(loaded_contents, open('orders.json', 'w'))
+    response = app.test_client().get('/order/{}'.format(targeted_order_id))
+    assert response.status_code == 200
+
+
 def test_delete_non_existing_order():
     targeted_order_id = 100
     response = app.test_client().delete('/order/{}'.format(targeted_order_id))
