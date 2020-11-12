@@ -5,7 +5,7 @@
 
 ### Setup
 - `pip install -r requirements.txt` install dependencies
-- `python3 -m pip install --editable .` for CLI app to work with the entry point of 'CLI'
+- `python3 -m pip install --editable .` for CLI app to work with the entry point of `cli`
 
 
 ### Running the pizza parlour application
