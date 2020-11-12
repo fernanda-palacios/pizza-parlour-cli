@@ -11,7 +11,7 @@
 ### Running the pizza parlour application
 
 - First, run the server: `python3 API.py`
-- The CLI can then be usde on a separate shell. CLI commands can be invoked as `cli {group} {command}` (examples section available below)
+- The CLI can then be used on a separate shell. CLI commands can be invoked as `cli {group} {command}` (examples section available below)
 
 Note: The commands are divided by groups (`menu`, `order`, `pickup-or-delivery`) and each group has its own available comands (e.g. `cli menu see-full-menu`)(full documentation below)
 
