@@ -51,7 +51,8 @@ class Order(Resource):
 
     def post(self):
         loaded_contents = json.load(open('orders.json', 'r'))
-        new_order_id = max([int(key) for key in loaded_contents.keys()]) + 1 if len(loaded_contents) > 0 else 1
+        new_order_id = max([int(key) for key in loaded_contents.keys()]
+                           ) + 1 if len(loaded_contents) > 0 else 1
 
         loaded_contents[new_order_id] = {}
         json.dump(loaded_contents, open('orders.json', 'w'))
@@ -106,7 +107,8 @@ class OrderItem(Resource):
 
 class PizzaTopping(Resource):
     def post(self, order_id, pizza_item_id, topping_item_id):
-        order_id, pizza_item_id, topping_item_id = str(order_id), str(pizza_item_id), str(topping_item_id)
+        order_id, pizza_item_id, topping_item_id = str(
+            order_id), str(pizza_item_id), str(topping_item_id)
         loaded_contents = json.load(open('orders.json', 'r'))
 
         if order_id not in loaded_contents:
@@ -122,7 +124,8 @@ class PizzaTopping(Resource):
         json.dump(loaded_contents, open('orders.json', 'w'))
         return loaded_contents[order_id]
 
-    def delete(self, order_id, pizza_item_id, topping_item_id): #     order_id, pizza_item_id, topping_item_id = str(order_id), str(pizza_item_id), str(topping_item_id)
+    # order_id, pizza_item_id, topping_item_id = str(order_id), str(pizza_item_id), str(topping_item_id)
+    def delete(self, order_id, pizza_item_id, topping_item_id):
         loaded_contents = json.load(open('orders.json', 'r'))
 
         if order_id not in loaded_contents:
@@ -140,7 +143,8 @@ class PizzaTopping(Resource):
         loaded_contents[order_id][pizza_item_id] = list(toppings)
         json.dump(loaded_contents, open('orders.json', 'w'))
 
-        return {"message": "topping id {} deleted from order".format(topping_item_id)}
+        return {
+            "message": "topping id {} deleted from order".format(topping_item_id)}
 
 
 class PickUp(Resource):
@@ -180,9 +184,13 @@ api.add_resource(ItemPrice, '/itemPrice/<int:item_id>')
 api.add_resource(Order, '/order')
 api.add_resource(OrderOperation, '/order/<string:order_id>')
 api.add_resource(OrderItem, '/orderItem/<string:order_id>/<string:item_id>')
-api.add_resource(PizzaTopping, '/pizzaTopping/<string:order_id>/<string:pizza_item_id>/<string:topping_item_id>')
+api.add_resource(
+    PizzaTopping,
+    '/pizzaTopping/<string:order_id>/<string:pizza_item_id>/<string:topping_item_id>')
 api.add_resource(PickUp, '/pickup/<string:order_id>')
-api.add_resource(Delivery, '/delivery/<string:order_id>/<string:method>/<string:address>')
+api.add_resource(
+    Delivery,
+    '/delivery/<string:order_id>/<string:method>/<string:address>')
 
 if __name__ == "__main__":
     app.run(debug=True)
