@@ -61,7 +61,6 @@ class Order(Resource):
 
 class OrderOperation(Resource):
     def get(self, order_id):
-        order_id = str(order_id)
         loaded_contents = json.load(open('orders.json', 'r'))
         if order_id not in loaded_contents.keys():
             return {'message': 'order id {0} does not exist'.format(order_id)}
@@ -69,7 +68,6 @@ class OrderOperation(Resource):
         return loaded_contents[order_id]
 
     def delete(self, order_id):
-        order_id = str(order_id)
         loaded_contents = json.load(open('orders.json', 'r'))
 
         if str(order_id) not in loaded_contents.keys():
@@ -82,7 +80,6 @@ class OrderOperation(Resource):
 
 class OrderItem(Resource):
     def post(self, order_id, item_id):
-        order_id, item_id = str(order_id), str(item_id)
         loaded_contents = json.load(open('orders.json', 'r'))
 
         if str(order_id) not in loaded_contents.keys():
@@ -95,7 +92,6 @@ class OrderItem(Resource):
         return {"message": "updated order details"}
 
     def delete(self, order_id, item_id):
-        order_id, item_id = str(order_id), str(item_id)
         loaded_contents = json.load(open('orders.json', 'r'))
 
         if str(order_id) not in loaded_contents.keys():
@@ -149,7 +145,6 @@ class PizzaTopping(Resource):
 
 class PickUp(Resource):
     def post(self, order_id):
-        order_id = str(order_id)
         loaded_contents = json.load(open('orders.json', 'r'))
 
         if str(order_id) not in loaded_contents.keys():
@@ -183,10 +178,10 @@ class Delivery(Resource):
 api.add_resource(Menu, '/menu')
 api.add_resource(ItemPrice, '/itemPrice/<int:item_id>')
 api.add_resource(Order, '/order')
-api.add_resource(OrderOperation, '/order/<int:order_id>')
-api.add_resource(OrderItem, '/orderItem/<int:order_id>/<int:item_id>')
+api.add_resource(OrderOperation, '/order/<string:order_id>')
+api.add_resource(OrderItem, '/orderItem/<string:order_id>/<string:item_id>')
 api.add_resource(PizzaTopping, '/pizzaTopping/<string:order_id>/<string:pizza_item_id>/<string:topping_item_id>')
-api.add_resource(PickUp, '/pickup/<int:order_id>')
+api.add_resource(PickUp, '/pickup/<string:order_id>')
 api.add_resource(Delivery, '/delivery/<string:order_id>/<string:method>/<string:address>')
 
 if __name__ == "__main__":
