@@ -64,7 +64,7 @@ Features based on category/groups:
       -  `cli  pickup-or-delivery select-delivery-method --order_id={order_id} --method={one of: ‘ubereats’, ‘in-house’, ‘foodora’} --address={address}`
 
 
-*Note: ensure the CLI is used with valid cases (cancel an existing order, add pizza then topping, remove existing item, etc)
+*Note: ensure the CLI is used with valid cases (cancel an existing order, add pizza then topping, remove existing item, modify order before selecting pickup/delivery, etc)
 
 
 *Note: a CLI method might be implemented as `see_full_menu` but it needs to be called as `see-full-menu` (with dashes not underscores) 
@@ -85,7 +85,33 @@ If a client wishes to customize the prices used while running the application or
 
 ## 3. Pair Programming
 
+We firstly used Visual Studio Code live share plugin to conduct the pair programming. Then, everyday we held 30 mins conversation using zoom to discuss the assignment.
+
+While doing pair programming, we separated this process into three different phases of development.
+
+1. Clarify the client requirements and design the command line interface accordingly
+- To set the correct backend API, having a clear idea of what the application would do from the client’s perspective was mandatory. In this part, Fernanda was mainly responsible for coming up with the command line interface design and architecture, and she discussed with Shisei the details for the required commands. 
+
+2. Set up the backend API mock up
+- When the front-end design and architecture was done, we started discussing backend API design. In this part, Shisei was mainly responsible for developing the design. While we were discussing the backend API designs, we chose to use REST API with Flask-RESTful plugin as it constructs each API based on the concept of modularity and single responsibility by defining each API into separate classes. 
+
+3. Actual coding. 
+For the command line interface, Fernanda played the driver's role while Shisei was taking Navigator's role. Shisei was specifying what to code based on the mock command line interface discussed during phase 1. When the driver feels that there's lack of clarity, the driver and the navigator discuss and clarify. Also as Shisei played the role of navigator, he conducted syntax error checking which Fernanda coded.
+
+For backend API coding, we switched role vice versa and conducted pair programming to write actual codes.
+
+Overall, we deeply focused on communication while pair programming. We usually try to share our thoughts to keep ourselves on the same pages. That made it easier to discover the pitfalls while coding.
+
+
 ## 4. Program Design
+
+We focused on applying the following coding principles:
+
+1. DRY (Don't repeat yourself) - for frontend and backend, if the same codes appear in different functions, we write it out as a separate function. For instance, in the file test/api_unit_tests.py, as we had to generate fake data over and over again in different test cases, we extracted the generated data part as a different function "load_empty_data" so that we avoid having the same codes in different test functions.
+
+2. SLAP (Single level of abstraction) - especially for server API coding, we attempt to keep classes in the same abstraction level. For the APIs, we use the Flask-RESTful extension so that we can keep the API's in the same abstraction such as 'Delivery', 'Pickup', and 'Order'.  Similarly, for the command line interface, we applied this principle by grouping the commands and their modules into categories (menu, order, pickup or delivery).
+
+3. Naming Convention - We follow the naming convention specified in the book "The Art of Readable Code" to name variables clearly for ease of interpretation. We especially focused on "avoid generic names like tmp", "prefer concrete names over abstract names", and "attaching extra information to a name" principles specified in the book. For instance, to name the test function for ‘get_order’ in the API, we avoided naming the test function to be 'test_order'. And we named the function to be 'test_get_existing_order' so that it clearly tells other team mate's that we are testing the GET request for order for the case that the order actually exists. The good naming convention fosters other team members to understand and extend the code more effectively.
 
 ## 5. Tools Used (code craftsmanship)
 
