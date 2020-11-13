@@ -2,7 +2,10 @@ from API import app
 import json
 
 
-def load_empty_data(order_id, place_pizza_item=False, place_topping_item=False):
+def load_empty_data(
+        order_id,
+        place_pizza_item=False,
+        place_topping_item=False):
     loaded_contents = json.load(open('orders.json', 'r'))
     if place_pizza_item is False and place_topping_item is False:
         loaded_contents[order_id] = {}
@@ -72,21 +75,24 @@ def test_delete_existing_order():
 def test_post_item_to_non_existing_order():
     targeted_order_id = 1000000
     targeted_item_id = 1
-    response = app.test_client().post('/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
+    response = app.test_client().post(
+        '/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
     assert response.status_code == 200
 
 
 def test_post_item_to_existing_order():
     targeted_order_id, targeted_item_id = 1, 1
     load_empty_data(targeted_order_id)
-    response = app.test_client().post('/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
+    response = app.test_client().post(
+        '/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
     assert response.status_code == 200
 
 
 def test_delete_item_from_non_existing_order():
     targeted_order_id = 100
     targeted_item_id = 1
-    response = app.test_client().delete('/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
+    response = app.test_client().delete(
+        '/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
     assert response.status_code == 200
 
 
@@ -94,10 +100,13 @@ def test_delete_item_from_existing_order():
     targeted_order_id = 1
     targeted_item_id = 1
     load_empty_data(targeted_order_id, True)
-    response = app.test_client().delete('/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
+    response = app.test_client().delete(
+        '/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
     assert response.status_code == 200
 
 # Pizza
+
+
 def test_post_topping_to_non_existing_order():
     targeted_order_id = 10000
     targeted_pizza_item_id = 1
@@ -133,7 +142,8 @@ def test_post_topping_to_existing_pizza():
 def test_delete_topping_from_non_existing_order():
     targeted_order_id = 100
     targeted_item_id = 1
-    response = app.test_client().delete('/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
+    response = app.test_client().delete(
+        '/orderItem/{}/{}'.format(targeted_order_id, targeted_item_id))
     assert response.status_code == 200
 
 
