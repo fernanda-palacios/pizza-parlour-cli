@@ -91,6 +91,6 @@ If a client wishes to customize the prices used while running the application or
 
 In order to have a good programming and formatting style in our code, we used the following tools to help us:
 - IDE (Visual Studio Code) and its `format document` command in order to format code during local development. In order to use this command, we installed an extension on Visual Studio Code for formatting python based on the python's standard PEP 8 style guide.
-- Linter github hook (autopep8 - which automatically formats Python code to conform to the PEP 8 style guide) (set up can be found here: https://github.com/csc301-fall-2020/assignment-2-33-shiseru-fernandapalacios/blob/main/lint.yml
+- Linter github hook (autopep8 - which automatically formats Python code to conform to the PEP 8 style guide) (set up can be found here: https://github.com/csc301-fall-2020/assignment-2-33-shiseru-fernandapalacios/blob/main/.github/workflows/lint.yml
 
 
