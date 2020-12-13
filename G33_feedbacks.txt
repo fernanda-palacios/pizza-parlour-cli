@@ -1,0 +1,28 @@
+Pair Programming (12.5/15):
+The report contained some good descriptions of the pair programming process, would be good to include more reflections (what went well and not well in the process).
+It would be also nice to also talk about what can be done better next time in terms of pair programming.
+It would be nice to be more explicit on which commits were done with pair programming. It is a bit hard to figure out from the commit messages.
+
+Program design (17/20):
+The report talked about the various design patterns used in the program (e.g SLAP).
+The program design is good in general.
+
+Functionality (20/25):
+Have simple input error checking against wrong inputs.
+CLI works but the design is a bit inconvenient since the user has to type in commands instead of interact with the cli within one session (while the program is running).
+
+Tests (18/20):
+The project achieved very high test coverage (around 97%)). 
+Need to start server to run the cli tests though.
+
+Code Craftsmanship (7/10):
+There are a few comments included in the codebase. More comments explaining the usage of each function would be better.
+The coding style looks clean and consistent.
+The report talked about the tools being used for development.
+
+md explanation and organization (8.5/10):
+The readme file included good set of instructions on how to run and test the program.
+
+
+
+total: 83
