@@ -1,6 +1,6 @@
 # Pizza Parlour CLI App
 
-### Local set up
+### Local setup
 - `pip install -r requirements.txt` install dependencies
 - `python3 -m pip install --editable .` for CLI app to work with the entry point of `cli`
 
@@ -10,12 +10,9 @@
 
 *Note: The commands are divided by groups (`menu`, `order`, `pickup-or-delivery`) and each group has its own available comands (e.g. `cli menu see-full-menu`)(full documentation below)
 
-
 ### Menu and item id's
-The menu is organized based on item id's (first column), required to use the application.
-
+The menu can be found / modified in [menu.csv](https://github.com/fernanda-palacios/pizza-parlour-cli/blob/main/menu.csv)\
 <img src="various_readme_pictures/menu.png" alt="menu" height="350" width="250"/>
-
 
 
 ### Example usage of CLI/ documentation
@@ -45,6 +42,3 @@ The menu is organized based on item id's (first column), required to use the app
       - `cli  pickup-or-delivery select-pickup --order_id={order_id}`
     - Delivery
       -  `cli  pickup-or-delivery select-delivery-method --order_id={order_id} --method={one of: ‘ubereats’, ‘in-house’, ‘foodora’} --address={address}`
-
-#### Dynamically changing prices / customizing items:
-If a client wishes to customize the prices used while running the application or to include a new pizza / item, they can do so by modifying the content from [menu.csv]: (https://github.com/fernanda-palacios/pizza-parlour-cli/blob/main/menu.csv)
